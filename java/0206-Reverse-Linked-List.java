@@ -41,8 +41,8 @@ class Solution {
 
 Final thoughts:
 
-Time complexity: O()
-Space complexity: O()
+Time complexity: O(n)
+Space complexity: O(1)
 
 
 
