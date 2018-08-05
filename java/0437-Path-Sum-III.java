@@ -41,13 +41,14 @@ Recursive solution. Make a helper function that returns the number of paths that
 
 class Solution {
     public int pathSum(TreeNode root, int sum) {
-        return pathSum(root, sum, sum);
+        if(root == null) return 0;
+        return pathSum(root.left, sum) + pathSum(root.right, sum) + pathSumFromRoot(root, sum);
     }
 
-    private int pathSum(TreeNode root, int sum, int oldSum){
+    private int pathSumFromRoot(TreeNode root, int sum){
         if(root == null) return 0;
-        return ((root.val == sum) ? 1 : 0) + pathSum(root.left, sum - root.val, oldSum) + pathSum(root.left, oldSum, oldSum) +
-        pathSum(root.right, sum - root.val, oldSum) + pathSum(root.right, oldSum, oldSum);
+        return (root.val == sum ? 1 : 0) + pathSumFromRoot(root.left, sum-root.val) + 
+            pathSumFromRoot(root.right, sum-root.val);
     }
 }
 
@@ -55,7 +56,7 @@ class Solution {
 
 Final thoughts:
 
-Time complexity: O()
+Time complexity: O(n^2)
 Space complexity: O()
 
 
