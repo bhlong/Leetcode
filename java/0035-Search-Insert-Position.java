@@ -50,7 +50,7 @@ class Solution {
                 hi = mid - 1;
             }
         }
-        return (nums[lo] < target) ? lo + 1 : lo;
+        return lo;
     }
 }
 
@@ -58,8 +58,8 @@ class Solution {
 
 Final thoughts:
 
-Time complexity: O()
-Space complexity: O()
+Time complexity: O(log(n))
+Space complexity: O(1)
 
 
 
