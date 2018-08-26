@@ -4,8 +4,8 @@ Problem Statement:
 
 Given a string, your task is to count how many palindromic substrings in this string.
 
-The substrings with different start indexes or end indexes are counted as different substrings even they consist of 
-same characters.
+The substrings with different start indexes or end indexes are counted as different substrings 
+even they consist of same characters.
 
 Example:
 
@@ -25,19 +25,28 @@ Example:
 
 Thought Process:
 
-We solve recursively. If empty string, return 0. If length == 1, return 1; if length == 2, return 2 + [1]==[2].
-If length > 2, return fn(sub(0, n-1)) + fn(1, n-1)
+We expand to check for palindromes across all possible centers.
 
 */
 
 class Solution {
     public int countSubstrings(String s) {
-        int n = s.length();
-        if(n == 0) return 0;
-        if(n == 1) return 1;
-        int sum = 0;
-        if(s.charAt(0) == s.charAt(n-1)) sum++;
-        return sum + countSubstrings(s.substring(1, n)) + countSubstrings(s.substring(0, n-1)) - countSubstrings(s.substring(1,n-1));
+        int count = 0;
+        for(int i = 0 ; i < s.length() ; i++){
+            count += expand(s, i, i);
+            count += expand(s, i, i+1); 
+        }
+        return count;
+    }
+
+    public int expand(String s, int left, int right){
+        int count = 0;
+        while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)){
+            count++;
+            left--;
+            right++;
+        }
+        return count;
     }
 }
 
@@ -45,8 +54,8 @@ class Solution {
 
 Final thoughts:
 
-Time complexity: O()
-Space complexity: O()
+Time complexity: O(n^2)
+Space complexity: O(1)
 
 
 
