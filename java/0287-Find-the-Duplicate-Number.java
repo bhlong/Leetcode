@@ -24,18 +24,34 @@ Example:
 
 Thought Process:
 
-Since each integer is between 1 and n
+The array forms an infinite loop somewhere, where we can utilize the turtle and hare technique.
 
 */
 
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int fast = nums[nums[0]];
+        int slow = nums[0];
 
+        while(fast != slow){
+            fast = nums[nums[fast]];
+            slow = nums[slow];
+        }
+        fast = 0;
+        while(fast != slow){
+            fast = nums[fast];
+            slow = nums[slow];
+        }
+        return fast;
+    }
+}
 
 /*
 
 Final thoughts:
 
-Time complexity: O()
-Space complexity: O()
+Time complexity: O(n)
+Space complexity: O(1)
 
 
 
